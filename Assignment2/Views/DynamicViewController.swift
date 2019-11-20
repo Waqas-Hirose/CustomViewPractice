@@ -17,30 +17,44 @@ class DynamicViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         isFirstLaunch = true
+        //setupViews()
+        
     }
     
     override func viewWillLayoutSubviews() {
-        setupViews()
+        //        setupViews()
+        if(isFirstLaunch!){
+            setupViews()
+            customView?.layoutIfNeeded()
+            customView?.layoutIfNeeded()
+        } else {
+            customView?.layoutIfNeeded()
+        }
+        
         isFirstLaunch = false
+        
     }
     
     func setupViews()  {
-        let isLoginButtonHidden = customView?.btnLogin?.isHidden
-        let isLogotButtonHidden = customView?.btnLogout?.isHidden
+        //        let isLoginButtonHidden = customView?.btnLogin?.isHidden
+        //        let isLogotButtonHidden = customView?.btnLogout?.isHidden
         
         for view in self.view.subviews {
             view.removeFromSuperview()
         }
-        customView = CustomView()
+        let window = UIApplication.shared.keyWindow
+        customView = CustomView(view: self.view)
+        customView?.setFramRect(xPoint: 0, yPoint: 0, viewWidth: view.frame.width-( (window?.safeAreaInsets.left)! +  (window?.safeAreaInsets.right)! + 20 ), viewHeight: 30)
         customView?.addSubviews(view: self.view, viewHieght:30)
-        customView?.center = self.view.center
         self.view.addSubview(customView!)
-        customView?.btnLogin.isHidden = isLoginButtonHidden ?? false
-        customView?.btnLogout.isHidden = isLogotButtonHidden ?? false
+        customView?.center = self.view.center
+        //        customView?.btnLogin.isHidden = isLoginButtonHidden ?? false
+        //        customView?.btnLogout.isHidden = isLogotButtonHidden ?? false
         
-        if(isFirstLaunch!){
-            customView?.btnLogout.isHidden = true
-        }
+//        if(isFirstLaunch!){
+//            //            customView?.btnLogout.isHidden = true
+//            //customView?.layoutIfNeeded()
+//        }
     }
 }
 
