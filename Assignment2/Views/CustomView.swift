@@ -11,11 +11,8 @@ import UIKit
 
 class CustomView : UIView {
     
-    var btnSettings: UIButton!
     var btnLogin: UIButton!
     var btnLogout: UIButton!
-    var lbl: UILabel!
-    var sv: UIStackView!
     
     override init (frame: CGRect) {
         super.init(frame: frame)
@@ -38,7 +35,7 @@ class CustomView : UIView {
         
         
         //Adding Stackview
-        sv = UIStackView()
+        let sv = UIStackView()
         sv.axis = .horizontal
         sv.frame = self.frame
         self.addSubview(sv)
@@ -47,7 +44,7 @@ class CustomView : UIView {
         //sv.distribution = .equalCentering
         
         // Adding Label
-        lbl = UILabel()
+        let lbl = UILabel()
         lbl.text = "Last login 11/12/2019 3:00"
         lbl.font = lbl.font?.withSize(16)
         lbl.textColor = .black
@@ -66,7 +63,7 @@ class CustomView : UIView {
         sv.addArrangedSubview(btnLogout)
         
         // Adding Settings Button
-        btnSettings = createButton(title: "Various Settings")
+        let btnSettings = createButton(title: "Various Settings")
         sv.addArrangedSubview(btnSettings)
         
         // Applying Actions on Buttons
