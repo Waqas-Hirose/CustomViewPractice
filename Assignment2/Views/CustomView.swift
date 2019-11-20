@@ -19,19 +19,10 @@ class CustomView : UIView {
     
     override init (frame: CGRect) {
         super.init(frame: frame)
-        initCommon()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-    
-    func initCommon() {
-        contentMode = .redraw
-        autoresizesSubviews = true
-        autoresizingMask = UIView.AutoresizingMask(rawValue: UIView.AutoresizingMask.flexibleWidth.rawValue | UIView.AutoresizingMask.flexibleHeight.rawValue)
-        setNeedsLayout()
-        
     }
     
     public func setFramRect(xPoint: CGFloat, yPoint: CGFloat, viewWidth: CGFloat, viewHeight: CGFloat) {
@@ -51,15 +42,16 @@ class CustomView : UIView {
         sv.axis = .horizontal
         sv.frame = self.frame
         self.addSubview(sv)
-        sv.alignment = .fill
+        sv.alignment = .lastBaseline
         sv.spacing = 10
-        sv.distribution = .equalCentering
+        //sv.distribution = .equalCentering
         
         // Adding Label
         lbl = UILabel()
         lbl.text = "Last login 11/12/2019 3:00"
         lbl.font = lbl.font?.withSize(16)
         lbl.textColor = .black
+        
         
         lbl.setContentHuggingPriority(UILayoutPriority(rawValue: 249), for:   NSLayoutConstraint.Axis.horizontal)
         sv.addArrangedSubview(lbl)
@@ -80,7 +72,6 @@ class CustomView : UIView {
         // Applying Actions on Buttons
         btnLogin.addTarget(self, action: #selector(btnLoginTapped), for: .touchUpInside)
         btnLogout.addTarget(self, action: #selector(btnLogoutTapped), for: .touchUpInside)
-        btnSettings.addTarget(self, action: #selector(btnSettingsTapped), for: .touchUpInside)
         
     }
     
@@ -118,11 +109,4 @@ class CustomView : UIView {
         btnLogin.isHidden = false
     }
     
-    /*
-     This function will be called when Settings Button will be tapped
-     */
-    @objc func btnSettingsTapped(sender: UIButton!) {
-        btnLogout.isHidden = false
-        btnLogin.isHidden = false
-    }
 }
