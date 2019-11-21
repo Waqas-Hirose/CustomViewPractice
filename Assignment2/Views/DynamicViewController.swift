@@ -12,7 +12,22 @@ import UIKit
 class DynamicViewController : UIViewController {
     
     var customView : CustomView?
+    let customViewHeight: CGFloat = 120
+    let buttonHeight: CGFloat = 30
     var isFirstLaunch: Bool?
+    
+    var rightSafeArea: CGFloat {
+        if #available(iOS 11.0, *) {
+            return view.safeAreaInsets.right
+        }
+        return 0
+    }
+    var leftSafeArea: CGFloat {
+        if #available(iOS 11.0, *) {
+            return view.safeAreaInsets.left
+        }
+        return 0
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,39 +37,24 @@ class DynamicViewController : UIViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        //        setupViews()
         if(isFirstLaunch!){
             setupViews()
-            customView?.layoutIfNeeded()
-            customView?.layoutIfNeeded()
-        } else {
-            customView?.layoutIfNeeded()
         }
         
+        customView?.layoutIfNeeded()
         isFirstLaunch = false
-        
     }
     
     func setupViews()  {
-        //        let isLoginButtonHidden = customView?.btnLogin?.isHidden
-        //        let isLogotButtonHidden = customView?.btnLogout?.isHidden
-        
-        for view in self.view.subviews {
-            view.removeFromSuperview()
-        }
-        let window = UIApplication.shared.keyWindow
-        customView = CustomView(view: self.view)
-        customView?.setFramRect(xPoint: 0, yPoint: 0, viewWidth: view.frame.width-( (window?.safeAreaInsets.left)! +  (window?.safeAreaInsets.right)! + 20 ), viewHeight: 30)
+        customView = CustomView(view: self.view, customViewHeight: customViewHeight, buttonHeight: buttonHeight)
+        customView?.setFramRect(xPoint: 0, yPoint: 0, viewWidth: view.frame.width-(leftSafeArea +  rightSafeArea + 20), viewHeight: customViewHeight)
         customView?.addSubviews(view: self.view, viewHieght:30)
         self.view.addSubview(customView!)
         customView?.center = self.view.center
-        //        customView?.btnLogin.isHidden = isLoginButtonHidden ?? false
-        //        customView?.btnLogout.isHidden = isLogotButtonHidden ?? false
         
-//        if(isFirstLaunch!){
-//            //            customView?.btnLogout.isHidden = true
-//            //customView?.layoutIfNeeded()
-//        }
+        if(isFirstLaunch!){
+            customView?.btnLogout.isHidden = true
+        }
     }
 }
 
