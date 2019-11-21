@@ -16,6 +16,7 @@
 		C25ACE36237F354500D1B772 /* Assignment2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25ACE35237F354500D1B772 /* Assignment2UITests.swift */; };
 		C263CB692382695400C5E157 /* DynamicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263CB682382695400C5E157 /* DynamicViewController.swift */; };
 		C2EE1A33238258890093EB30 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EE1A32238258890093EB30 /* CustomView.swift */; };
+		C2F243842386477500DD4C06 /* LabelSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F243832386477500DD4C06 /* LabelSwitchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		C25ACE37237F354500D1B772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C263CB682382695400C5E157 /* DynamicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicViewController.swift; sourceTree = "<group>"; };
 		C2EE1A32238258890093EB30 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		C2F243832386477500DD4C06 /* LabelSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelSwitchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			children = (
 				C2EE1A32238258890093EB30 /* CustomView.swift */,
 				C263CB682382695400C5E157 /* DynamicViewController.swift */,
+				C2F243832386477500DD4C06 /* LabelSwitchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2F243842386477500DD4C06 /* LabelSwitchView.swift in Sources */,
 				C263CB692382695400C5E157 /* DynamicViewController.swift in Sources */,
 				C2EE1A33238258890093EB30 /* CustomView.swift in Sources */,
 				C25ACE14237F354200D1B772 /* AppDelegate.swift in Sources */,

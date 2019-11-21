@@ -14,7 +14,7 @@ class CustomView : UIView {
     var btnLogin: UIButton!
     var btnLogout: UIButton!
     var btnSettings: UIButton!
-    var parentView: UIView?
+    //var parentView: UIView?
     var viewHeight: CGFloat?
     var buttonHeight: CGFloat?
     var lbl: UILabel!
@@ -24,12 +24,13 @@ class CustomView : UIView {
         initCommon()
     }
     
-    init (view: UIView, customViewHeight: CGFloat, buttonHeight: CGFloat) {
-        super.init(frame: view.frame)
-        self.parentView = view
+    init (frame: CGRect, customViewHeight: CGFloat, buttonHeight: CGFloat) {
+        super.init(frame: frame)
+        //self.parentView = view
         self.viewHeight = customViewHeight
         self.buttonHeight = buttonHeight
         initCommon()
+        addSubviews(viewHieght: self.buttonHeight!)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -38,34 +39,17 @@ class CustomView : UIView {
     
     func initCommon() {
         contentMode = .redraw
-        autoresizesSubviews = true
         autoresizingMask = UIView.AutoresizingMask(rawValue: UIView.AutoresizingMask.flexibleWidth.rawValue | UIView.AutoresizingMask.flexibleHeight.rawValue)
-        //setNeedsLayout()
-        
     }
     
-    var rightSafeArea: CGFloat {
-        if #available(iOS 11.0, *) {
-            return parentView?.safeAreaInsets.right ?? 0
-        }
-        return 0
-    }
-    var leftSafeArea: CGFloat {
-        if #available(iOS 11.0, *) {
-            return parentView?.safeAreaInsets.left ?? 0
-        }
-        return 0
-    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.setFramRect(xPoint: 0, yPoint: 0, viewWidth: parentView!.frame.width-( leftSafeArea +  rightSafeArea ), viewHeight: viewHeight!)
-        
         let buttonsYPosition = (viewHeight! - buttonHeight!)/2
         
         var frame = btnSettings.frame
-        self.btnSettings.frame = CGRect(x: self.frame.maxX-10-frame.width , y: buttonsYPosition, width: frame.width, height: buttonHeight!)
+        self.btnSettings.frame = CGRect(x: self.bounds.width-10-frame.width , y: buttonsYPosition, width: frame.width, height: buttonHeight!)
         
         frame = btnLogout.frame
         self.btnLogout.frame = CGRect(x: btnSettings.frame.minX-10-frame.width , y: buttonsYPosition, width: frame.width, height: buttonHeight!)
@@ -73,9 +57,8 @@ class CustomView : UIView {
         frame = btnLogin.frame
         self.btnLogin.frame = CGRect(x: btnSettings.frame.minX-10-frame.width , y: buttonsYPosition, width: frame.width, height: buttonHeight!)
         
-        self.lbl.frame = CGRect(x: parentView!.frame.minX , y: buttonsYPosition, width: btnLogout.frame.minX-10 , height: buttonHeight!)
-        
-        self.center = parentView!.center
+        self.lbl.frame = CGRect(x: 0 , y: buttonsYPosition, width: btnLogout.frame.minX-10 , height: buttonHeight!)
+
     }
     
     
@@ -83,7 +66,7 @@ class CustomView : UIView {
         frame = CGRect(x: xPoint , y: yPoint, width: viewWidth, height: viewHeight)
     }
     
-    func addSubviews(view: UIView, viewHieght: CGFloat) {
+    func addSubviews(viewHieght: CGFloat) {
         
         self.translatesAutoresizingMaskIntoConstraints = false
         
@@ -111,9 +94,8 @@ class CustomView : UIView {
         lbl.sizeToFit()
         self.addSubview(lbl)
         
-        
-        // Setting current custom view frame
-        self.setFramRect(xPoint: 0, yPoint: 0, viewWidth: self.frame.width, viewHeight: viewHeight!)
+        // Logout button will be hidden initially
+        self.btnLogout.isHidden = true
         
     }
     

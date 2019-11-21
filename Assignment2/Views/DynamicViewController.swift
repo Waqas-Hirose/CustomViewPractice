@@ -14,7 +14,6 @@ class DynamicViewController : UIViewController {
     var customView : CustomView?
     let customViewHeight: CGFloat = 120
     let buttonHeight: CGFloat = 30
-    var isFirstLaunch: Bool?
     
     var rightSafeArea: CGFloat {
         if #available(iOS 11.0, *) {
@@ -31,30 +30,26 @@ class DynamicViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        isFirstLaunch = true
-        //setupViews()
+        setupViews()
         
     }
     
     override func viewWillLayoutSubviews() {
-        if(isFirstLaunch!){
-            setupViews()
-        }
+        super.viewWillLayoutSubviews()
         
-        customView?.layoutIfNeeded()
-        isFirstLaunch = false
+        // Reseting CustomView Fram
+        customView?.setFramRect(xPoint: 0, yPoint: 0, viewWidth: view.frame.width-(leftSafeArea +  rightSafeArea + 20), viewHeight: customViewHeight)
+        
+        //        Setting CustonView in the Center of Parent View
+        customView?.center = self.view.center
     }
     
     func setupViews()  {
-        customView = CustomView(view: self.view, customViewHeight: customViewHeight, buttonHeight: buttonHeight)
-        customView?.setFramRect(xPoint: 0, yPoint: 0, viewWidth: view.frame.width-(leftSafeArea +  rightSafeArea + 20), viewHeight: customViewHeight)
-        customView?.addSubviews(view: self.view, viewHieght:30)
-        self.view.addSubview(customView!)
+        let viewframe = CGRect(x: 0 , y: 0, width: view.frame.width-(leftSafeArea +  rightSafeArea + 20), height: customViewHeight)
+        customView = CustomView(frame: viewframe, customViewHeight: customViewHeight, buttonHeight: buttonHeight)
         customView?.center = self.view.center
+        self.view.addSubview(customView!)
         
-        if(isFirstLaunch!){
-            customView?.btnLogout.isHidden = true
-        }
     }
 }
 
