@@ -22,14 +22,7 @@ class LabelSwitchView : UIView {
         initCommon()
     }
     
-    init (view: UIView, customViewHeight: CGFloat, subViewHeight: CGFloat) {
-        super.init(frame: view.frame)
-        self.parentView = view
-        self.viewHeight = customViewHeight
-        self.subViewsHeight = subViewHeight
-        initCommon()
-    }
-    
+   
     
     init (frame: CGRect, customViewHeight: CGFloat, subViewHeight: CGFloat) {
         super.init(frame: frame)
@@ -62,13 +55,13 @@ class LabelSwitchView : UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let buttonsYPosition = (viewHeight! - subViewsHeight!)/2
+        let subviewsYPosition = (viewHeight! - subViewsHeight!)/2
         
         var frame = lbl.frame
-        self.lbl.frame = CGRect(x: 5 , y: buttonsYPosition, width: frame.width, height: subViewsHeight!)
+        self.lbl.frame = CGRect(x: 5 , y: subviewsYPosition, width: frame.width, height: subViewsHeight!)
         
         frame = switchView.frame
-        self.switchView.frame = CGRect(x: lbl.bounds.width + 5 , y: buttonsYPosition, width: frame.width, height: subViewsHeight!)
+        self.switchView.frame = CGRect(x: lbl.bounds.width + 5 , y: subviewsYPosition, width: frame.width, height: subViewsHeight!)
 
     }
     

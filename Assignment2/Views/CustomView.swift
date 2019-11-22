@@ -18,6 +18,7 @@ class CustomView : UIView {
     var viewHeight: CGFloat?
     var buttonHeight: CGFloat?
     var lbl: UILabel!
+    var labelSwitch: LabelSwitchView!
     
     override init (frame: CGRect) {
         super.init(frame: frame)
@@ -57,7 +58,12 @@ class CustomView : UIView {
         frame = btnLogin.frame
         self.btnLogin.frame = CGRect(x: btnSettings.frame.minX-10-frame.width , y: buttonsYPosition, width: frame.width, height: buttonHeight!)
         
-        self.lbl.frame = CGRect(x: 0 , y: buttonsYPosition, width: btnLogout.frame.minX-10 , height: buttonHeight!)
+        labelSwitch.sizeToFit()
+        frame = labelSwitch.frame
+        self.labelSwitch.frame = CGRect(x:  btnLogout.frame.minX-10-frame.width, y: buttonsYPosition, width: labelSwitch.bounds.width+5 , height: buttonHeight!)
+        
+        
+        self.lbl.frame = CGRect(x: 0 , y: buttonsYPosition, width: labelSwitch.frame.minX-10 , height: buttonHeight!)
 
     }
     
@@ -86,6 +92,12 @@ class CustomView : UIView {
         //Applying Actions on Buttons
         btnLogin.addTarget(self, action: #selector(btnLoginTapped), for: .touchUpInside)
         btnLogout.addTarget(self, action: #selector(btnLogoutTapped), for: .touchUpInside)
+        
+        let frame = CGRect(x: 0 , y: 0, width: 100 , height: 30)
+        labelSwitch = LabelSwitchView(frame: frame, customViewHeight: 30, subViewHeight: 30)
+        labelSwitch.sizeToFit()
+        self.addSubview(labelSwitch)
+        
         
         lbl = UILabel()
         lbl.text = " Last login 11/12/2019 3:00"
