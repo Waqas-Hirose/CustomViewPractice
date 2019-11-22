@@ -57,13 +57,14 @@ class LabelSwitchView : UIView {
         
         let subviewsYPosition = (viewHeight! - subViewsHeight!)/2
         
-        lbl.sizeToFit()
-        var frame = lbl.frame
-        self.lbl.frame = CGRect(x: 5 , y: subviewsYPosition, width: frame.width, height: subViewsHeight!)
         
-        switchView.sizeToFit()
-        frame = switchView.frame
-        self.switchView.frame = CGRect(x: lbl.bounds.width + 5 , y: subviewsYPosition, width: frame.width, height: subViewsHeight!)
+        let lblNewSize = lbl.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        lbl.frame.size = lblNewSize
+        self.lbl.frame = CGRect(x: 5 , y: subviewsYPosition, width: lblNewSize.width, height: subViewsHeight!)
+        
+        
+        let switchNewSize = switchView.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        self.switchView.frame = CGRect(x: lbl.bounds.width + 5 , y: subviewsYPosition, width: switchNewSize.width, height: subViewsHeight!)
 
     }
     
@@ -80,6 +81,7 @@ class LabelSwitchView : UIView {
         lbl.text = "Auto Login"
         lbl.font = lbl.font?.withSize(16)
         lbl.textColor = .black
+        lbl.sizeToFit()
         self.addSubview(lbl)
         
         // Adding Logout Button

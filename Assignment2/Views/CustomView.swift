@@ -49,23 +49,28 @@ class CustomView : UIView {
         
         let buttonsYPosition = (viewHeight! - buttonHeight!)/2
         
-        btnSettings.sizeToFit()
-        var frame = btnSettings.frame
-        self.btnSettings.frame = CGRect(x: self.bounds.width-10-frame.width , y: buttonsYPosition, width: frame.width, height: buttonHeight!)
         
-        btnLogout.sizeToFit()
-        frame = btnLogout.frame
-        self.btnLogout.frame = CGRect(x: btnSettings.frame.minX-10-frame.width , y: buttonsYPosition, width: frame.width, height: buttonHeight!)
         
-        btnLogin.sizeToFit()
-        frame = btnLogin.frame
-        self.btnLogin.frame = CGRect(x: btnSettings.frame.minX-10-frame.width , y: buttonsYPosition, width: frame.width, height: buttonHeight!)
+        let btnSettingsSize = btnSettings.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        btnSettings.frame.size = btnSettingsSize
+        self.btnSettings.frame = CGRect(x: self.bounds.width-10 - btnSettingsSize.width , y: buttonsYPosition, width: btnSettingsSize.width, height: buttonHeight!)
         
-        labelSwitch.sizeToFit()
-        frame = labelSwitch.frame
-        self.labelSwitch.frame = CGRect(x:  btnLogout.frame.minX-10-frame.width, y: buttonsYPosition, width: labelSwitch.bounds.width+5 , height: buttonHeight!)
         
-        lbl.sizeToFit()
+        let btnLogoutSize = btnLogout.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        btnLogout.frame.size = btnLogoutSize
+        self.btnLogout.frame = CGRect(x: btnSettings.frame.minX-10-btnLogoutSize.width , y: buttonsYPosition, width: btnLogoutSize.width, height: buttonHeight!)
+        
+        let btnLogintSize = btnLogin.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        btnLogin.frame.size = btnLogintSize
+        self.btnLogin.frame = CGRect(x: btnSettings.frame.minX-10-btnLogoutSize.width , y: buttonsYPosition, width: btnLogoutSize.width, height: buttonHeight!)
+        
+        
+        let switchSize = labelSwitch.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        labelSwitch.frame.size = switchSize
+        self.labelSwitch.frame = CGRect(x: btnLogout.frame.minX-10-switchSize.width , y: buttonsYPosition, width: labelSwitch.bounds.width+5 , height: buttonHeight!)
+                
+        let lblSize = lbl.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        lbl.frame.size = lblSize
         self.lbl.frame = CGRect(x: 0 , y: buttonsYPosition, width: labelSwitch.frame.minX-10 , height: buttonHeight!)
 
     }
@@ -106,6 +111,7 @@ class CustomView : UIView {
         lbl.text = " Last login 11/12/2019 3:00"
         lbl.font = lbl.font?.withSize(16)
         lbl.textColor = .black
+        lbl.sizeToFit()
         self.addSubview(lbl)
         
         // Logout button will be hidden initially
@@ -124,6 +130,7 @@ class CustomView : UIView {
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.black.cgColor
         button.setTitleColor(.black, for: .normal)
+        button.sizeToFit()
         let spacing: CGFloat = 2.0
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: spacing, bottom: 0, right: spacing)
         button.titleLabel?.font = button.titleLabel?.font.withSize(16)
