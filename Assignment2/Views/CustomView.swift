@@ -64,11 +64,16 @@ class CustomView : UIView {
         btnLogin.frame.size = btnLogintSize
         self.btnLogin.frame = CGRect(x: btnSettings.frame.minX-10-btnLogintSize.width , y: buttonsYPosition, width: btnLogintSize.width, height: buttonHeight!)
         
-        
-        let switchSize = labelSwitch.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        labelSwitch.frame.size = switchSize
-        self.labelSwitch.frame = CGRect(x: btnLogout.frame.minX-10-switchSize.width , y: buttonsYPosition, width: labelSwitch.bounds.width+5 , height: buttonHeight!)
-                
+        if(btnLogin.isHidden){
+            let switchSize = labelSwitch.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+                   labelSwitch.frame.size = switchSize
+                   self.labelSwitch.frame = CGRect(x: btnLogout.frame.minX-10-switchSize.width , y: buttonsYPosition, width: labelSwitch.bounds.width+5 , height: buttonHeight!)
+        } else {
+            let switchSize = labelSwitch.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+                   labelSwitch.frame.size = switchSize
+                   self.labelSwitch.frame = CGRect(x: btnLogin.frame.minX-10-switchSize.width , y: buttonsYPosition, width: labelSwitch.bounds.width+5 , height: buttonHeight!)
+        }
+       
         let lblSize = lbl.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
         lbl.frame.size = lblSize
         self.lbl.frame = CGRect(x: 0 , y: buttonsYPosition, width: labelSwitch.frame.minX-10 , height: buttonHeight!)
@@ -140,6 +145,7 @@ class CustomView : UIView {
     @objc func btnLoginTapped(sender: UIButton!) {
         btnLogin.isHidden = true
         btnLogout.isHidden = false
+        self.setNeedsLayout()
     }
     
     /*
@@ -148,6 +154,7 @@ class CustomView : UIView {
     @objc func btnLogoutTapped(sender: UIButton!) {
         btnLogout.isHidden = true
         btnLogin.isHidden = false
+        self.setNeedsLayout()
     }
     
 }
