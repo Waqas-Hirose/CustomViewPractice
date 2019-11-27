@@ -62,7 +62,7 @@ class CustomView : UIView {
         
         let btnLogintSize = btnLogin.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
         btnLogin.frame.size = btnLogintSize
-        self.btnLogin.frame = CGRect(x: btnSettings.frame.minX-10-btnLogoutSize.width , y: buttonsYPosition, width: btnLogoutSize.width, height: buttonHeight!)
+        self.btnLogin.frame = CGRect(x: btnSettings.frame.minX-10-btnLogintSize.width , y: buttonsYPosition, width: btnLogintSize.width, height: buttonHeight!)
         
         
         let switchSize = labelSwitch.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
@@ -75,10 +75,6 @@ class CustomView : UIView {
 
     }
     
-    
-    public func setFramRect(xPoint: CGFloat, yPoint: CGFloat, viewWidth: CGFloat, viewHeight: CGFloat) {
-        frame = CGRect(x: xPoint , y: yPoint, width: viewWidth, height: viewHeight)
-    }
     
     func addSubviews(viewHieght: CGFloat) {
         

@@ -12,7 +12,7 @@ import UIKit
 class DynamicViewController : UIViewController {
     
     var customView : CustomView?
-    let customViewHeight: CGFloat = 120
+    let customViewHeight: CGFloat = 50
     let buttonHeight: CGFloat = 30
     
     var rightSafeArea: CGFloat {
@@ -37,8 +37,7 @@ class DynamicViewController : UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        // Reseting CustomView Fram
-        customView?.setFramRect(xPoint: 0, yPoint: 0, viewWidth: view.frame.width-(leftSafeArea +  rightSafeArea + 20), viewHeight: customViewHeight)
+        customView?.frame = CGRect(x: 0, y: 0, width: view.frame.width-(leftSafeArea +  rightSafeArea + 20), height: customViewHeight)
         
         //        Setting CustonView in the Center of Parent View
         customView?.center = self.view.center
@@ -46,9 +45,17 @@ class DynamicViewController : UIViewController {
     
     func setupViews()  {
         let viewframe = CGRect(x: 0 , y: 0, width: view.frame.width-(leftSafeArea +  rightSafeArea + 20), height: customViewHeight)
+        
+        
+        
+        
         customView = CustomView(frame: viewframe, customViewHeight: customViewHeight, buttonHeight: buttonHeight)
         customView?.center = self.view.center
+        
+//       customView = CustomView()
+        
         self.view.addSubview(customView!)
+        
         
     }
 }
