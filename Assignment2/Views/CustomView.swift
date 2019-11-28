@@ -49,34 +49,26 @@ class CustomView : UIView {
         
         let buttonsYPosition = (viewHeight! - buttonHeight!)/2
         
-        
-        
         let btnSettingsSize = btnSettings.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        btnSettings.frame.size = btnSettingsSize
         self.btnSettings.frame = CGRect(x: self.bounds.width-10 - btnSettingsSize.width , y: buttonsYPosition, width: btnSettingsSize.width, height: buttonHeight!)
         
         
         let btnLogoutSize = btnLogout.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        btnLogout.frame.size = btnLogoutSize
         self.btnLogout.frame = CGRect(x: btnSettings.frame.minX-10-btnLogoutSize.width , y: buttonsYPosition, width: btnLogoutSize.width, height: buttonHeight!)
         
         let btnLogintSize = btnLogin.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        btnLogin.frame.size = btnLogintSize
         self.btnLogin.frame = CGRect(x: btnSettings.frame.minX-10-btnLogintSize.width , y: buttonsYPosition, width: btnLogintSize.width, height: buttonHeight!)
         
         let switchSize = labelSwitch.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        labelSwitch.frame.size = switchSize
         
         if(btnLogin.isHidden){
             
-            self.labelSwitch.frame = CGRect(x: btnLogout.frame.minX-10-switchSize.width , y: buttonsYPosition, width: labelSwitch.bounds.width+5 , height: buttonHeight!)
+            self.labelSwitch.frame = CGRect(x: btnLogout.frame.minX-10-switchSize.width , y: buttonsYPosition, width: switchSize.width+5 , height: buttonHeight!)
         } else {
             
-            self.labelSwitch.frame = CGRect(x: btnLogin.frame.minX-10-switchSize.width , y: buttonsYPosition, width: labelSwitch.bounds.width+5 , height: buttonHeight!)
+            self.labelSwitch.frame = CGRect(x: btnLogin.frame.minX-10-switchSize.width , y: buttonsYPosition, width: switchSize.width+5 , height: buttonHeight!)
         }
         
-        let lblSize = lbl.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        lbl.frame.size = lblSize
         self.lbl.frame = CGRect(x: 0 , y: buttonsYPosition, width: labelSwitch.frame.minX-10 , height: buttonHeight!)
         
     }

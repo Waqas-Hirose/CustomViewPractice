@@ -59,7 +59,6 @@ class LabelSwitchView : UIView {
         
         
         let lblNewSize = lbl.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        lbl.frame.size = lblNewSize
         self.lbl.frame = CGRect(x: 5 , y: subviewsYPosition, width: lblNewSize.width, height: subViewsHeight!)
         
         
