@@ -12,7 +12,6 @@ import UIKit
 class LabelSwitchView : UIView {
     
     var parentView: UIView?
-    var viewHeight: CGFloat?
     var subViewsHeight: CGFloat?
     var switchView: UISwitch!
     var lbl: UILabel!
@@ -22,11 +21,10 @@ class LabelSwitchView : UIView {
         initCommon()
     }
     
-   
     
-    init (frame: CGRect, customViewHeight: CGFloat, subViewHeight: CGFloat) {
+    
+    init (frame: CGRect, subViewHeight: CGFloat) {
         super.init(frame: frame)
-       self.viewHeight = customViewHeight
         self.subViewsHeight = subViewHeight
         initCommon()
         addSubviews(viewHieght: self.subViewsHeight!)
@@ -46,16 +44,16 @@ class LabelSwitchView : UIView {
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         let labelSize = self.lbl.sizeThatFits(size)
         let switchSize = self.switchView.sizeThatFits(size)
-
+        
         let width = labelSize.width + switchSize.width + 5;
         let s = CGSize(width: width, height: size.height)
-
+        
         return s;
     }
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let subviewsYPosition = (viewHeight! - subViewsHeight!)/2
+        let subviewsYPosition = (self.frame.height - subViewsHeight!)/2
         
         
         let lblNewSize = lbl.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
@@ -64,7 +62,7 @@ class LabelSwitchView : UIView {
         
         let switchNewSize = switchView.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
         self.switchView.frame = CGRect(x: lbl.bounds.width + 5 , y: subviewsYPosition, width: switchNewSize.width, height: subViewsHeight!)
-
+        
     }
     
     
@@ -75,7 +73,7 @@ class LabelSwitchView : UIView {
     func addSubviews(viewHieght: CGFloat) {
         
         self.translatesAutoresizingMaskIntoConstraints = false
-         
+        
         lbl = UILabel()
         lbl.text = "Auto Login"
         lbl.font = lbl.font?.withSize(16)

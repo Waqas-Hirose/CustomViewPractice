@@ -14,8 +14,6 @@ class CustomView : UIView {
     var btnLogin: UIButton!
     var btnLogout: UIButton!
     var btnSettings: UIButton!
-    //var parentView: UIView?
-    var viewHeight: CGFloat?
     var buttonHeight: CGFloat?
     var lbl: UILabel!
     var labelSwitch: LabelSwitchView!
@@ -25,10 +23,8 @@ class CustomView : UIView {
         initCommon()
     }
     
-    init (frame: CGRect, customViewHeight: CGFloat, buttonHeight: CGFloat) {
+    init (frame: CGRect, buttonHeight: CGFloat) {
         super.init(frame: frame)
-        //self.parentView = view
-        self.viewHeight = customViewHeight
         self.buttonHeight = buttonHeight
         initCommon()
         addSubviews(viewHieght: self.buttonHeight!)
@@ -47,7 +43,8 @@ class CustomView : UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let buttonsYPosition = (viewHeight! - buttonHeight!)/2
+        
+        let buttonsYPosition = (self.frame.height - buttonHeight!)/2
         
         let btnSettingsSize = btnSettings.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
         self.btnSettings.frame = CGRect(x: self.bounds.width-10 - btnSettingsSize.width , y: buttonsYPosition, width: btnSettingsSize.width, height: buttonHeight!)
@@ -96,7 +93,7 @@ class CustomView : UIView {
         btnLogout.addTarget(self, action: #selector(btnLogoutTapped), for: .touchUpInside)
         
         let frame = CGRect(x: 0 , y: 0, width: 100 , height: 30)
-        labelSwitch = LabelSwitchView(frame: frame, customViewHeight: 30, subViewHeight: 30)
+        labelSwitch = LabelSwitchView(frame: frame, subViewHeight: 30)
         labelSwitch.sizeToFit()
         self.addSubview(labelSwitch)
         

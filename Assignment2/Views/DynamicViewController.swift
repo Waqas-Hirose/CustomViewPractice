@@ -49,10 +49,10 @@ class DynamicViewController : UIViewController {
         
         
         
-        customView = CustomView(frame: viewframe, customViewHeight: customViewHeight, buttonHeight: buttonHeight)
+        customView = CustomView(frame: viewframe, buttonHeight: buttonHeight)
         customView?.center = self.view.center
         
-//       customView = CustomView()
+        //       customView = CustomView()
         
         self.view.addSubview(customView!)
         
