@@ -44,17 +44,32 @@ class DynamicViewController : UIViewController {
     }
     
     func setupViews()  {
-        let viewframe = CGRect(x: 0 , y: 0, width: view.frame.width-(leftSafeArea +  rightSafeArea + 20), height: customViewHeight)
+        //        let viewframe = CGRect(x: 0 , y: 0, width: view.frame.width-(leftSafeArea +  rightSafeArea + 20), height: customViewHeight)
+        //        customView = CustomView(frame: viewframe, buttonHeight: buttonHeight)
+        //        customView?.center = self.view.center
+        //
+        //        //       customView = CustomView()
+        //
+        //        self.view.addSubview(customView!)
         
+        customView = CustomView(frame: .zero, buttonHeight: buttonHeight)
+        if let customView = customView {
+            customView.translatesAutoresizingMaskIntoConstraints = false
+            self.view.addSubview(customView)
+            
+            // Applying COnstraints on CustomeView
+            NSLayoutConstraint(item: customView, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0).isActive = true
+            
+            customView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+            customView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10).isActive = true
+            customView.addConstraint(NSLayoutConstraint(
+                item:customView, attribute:NSLayoutConstraint.Attribute.height,
+                relatedBy:NSLayoutConstraint.Relation.equal,
+                toItem:nil, attribute:NSLayoutConstraint.Attribute.notAnAttribute,
+                multiplier:0, constant:50))
+            
+        }
         
-        
-        
-        customView = CustomView(frame: viewframe, buttonHeight: buttonHeight)
-        customView?.center = self.view.center
-        
-        //       customView = CustomView()
-        
-        self.view.addSubview(customView!)
         
         
     }
