@@ -44,8 +44,8 @@ class LabelSwitchView : UIView {
     
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let labelSize = self.lbl.intrinsicContentSize
-        let switchSize = self.switchView.intrinsicContentSize
+        let labelSize = self.lbl.sizeThatFits(size)
+        let switchSize = self.switchView.sizeThatFits(size)
 
         let width = labelSize.width + switchSize.width + 5;
         let s = CGSize(width: width, height: size.height)
