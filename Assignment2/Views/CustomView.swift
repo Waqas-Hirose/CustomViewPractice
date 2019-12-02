@@ -21,13 +21,7 @@ class CustomView : UIView {
     override init (frame: CGRect) {
         super.init(frame: frame)
         initCommon()
-    }
-    
-    init (frame: CGRect, buttonHeight: CGFloat) {
-        super.init(frame: frame)
-        self.buttonHeight = buttonHeight
-        initCommon()
-        addSubviews(viewHieght: self.buttonHeight!)
+        addSubviews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,35 +36,35 @@ class CustomView : UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        
-        let buttonsYPosition = (self.frame.height - buttonHeight!)/2
-        
         let btnSettingsSize = btnSettings.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        self.btnSettings.frame = CGRect(x: self.bounds.width-10 - btnSettingsSize.width , y: buttonsYPosition, width: btnSettingsSize.width, height: buttonHeight!)
+        var subviewYPosition = (self.frame.height - btnSettingsSize.height)/2
+        self.btnSettings.frame = CGRect(x: self.bounds.width-10 - btnSettingsSize.width , y: subviewYPosition, width: btnSettingsSize.width, height: btnSettingsSize.height)
         
         
         let btnLogoutSize = btnLogout.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        self.btnLogout.frame = CGRect(x: btnSettings.frame.minX-10-btnLogoutSize.width , y: buttonsYPosition, width: btnLogoutSize.width, height: buttonHeight!)
+        subviewYPosition = (self.frame.height - btnLogoutSize.height)/2
+        self.btnLogout.frame = CGRect(x: btnSettings.frame.minX-10-btnLogoutSize.width , y: subviewYPosition, width: btnLogoutSize.width, height: btnLogoutSize.height)
         
         let btnLogintSize = btnLogin.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        self.btnLogin.frame = CGRect(x: btnSettings.frame.minX-10-btnLogintSize.width , y: buttonsYPosition, width: btnLogintSize.width, height: buttonHeight!)
+        subviewYPosition = (self.frame.height - btnLogintSize.height)/2
+        self.btnLogin.frame = CGRect(x: btnSettings.frame.minX-10-btnLogintSize.width , y: subviewYPosition, width: btnLogintSize.width, height: btnLogintSize.height)
         
         let switchSize = labelSwitch.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        
+        subviewYPosition = (self.frame.height - labelSwitch.frame.height)/2
         if(btnLogin.isHidden){
-            
-            self.labelSwitch.frame = CGRect(x: btnLogout.frame.minX-10-switchSize.width , y: buttonsYPosition, width: switchSize.width+5 , height: buttonHeight!)
+            self.labelSwitch.frame = CGRect(x: btnLogout.frame.minX-10-switchSize.width , y: subviewYPosition, width: switchSize.width+5 , height: labelSwitch.frame.height)
         } else {
             
-            self.labelSwitch.frame = CGRect(x: btnLogin.frame.minX-10-switchSize.width , y: buttonsYPosition, width: switchSize.width+5 , height: buttonHeight!)
+            self.labelSwitch.frame = CGRect(x: btnLogin.frame.minX-10-switchSize.width , y: subviewYPosition, width: switchSize.width+5 , height: labelSwitch.frame.height)
         }
         
-        self.lbl.frame = CGRect(x: 0 , y: buttonsYPosition, width: labelSwitch.frame.minX-10 , height: buttonHeight!)
+        subviewYPosition = (self.frame.height - lbl.frame.height)/2
+        self.lbl.frame = CGRect(x: 0 , y: subviewYPosition, width: labelSwitch.frame.minX-10 , height: lbl.frame.height)
         
     }
     
     
-    func addSubviews(viewHieght: CGFloat) {
+    func addSubviews() {
         // Adding Various Settings Button
         btnSettings = createButton(title: "Various Settings")
         self.addSubview(btnSettings)
@@ -79,7 +73,7 @@ class CustomView : UIView {
         btnLogout = createButton(title: "Log out")
         self.addSubview(btnLogout)
         
-        // Adding Logout Button
+        // Adding Login Button
         btnLogin = createButton(title: "Log in")
         frame = btnLogin.frame
         self.addSubview(btnLogin)
@@ -88,12 +82,13 @@ class CustomView : UIView {
         btnLogin.addTarget(self, action: #selector(btnLoginTapped), for: .touchUpInside)
         btnLogout.addTarget(self, action: #selector(btnLogoutTapped), for: .touchUpInside)
         
+        // Adding LabelSwitch Custom View
         let frame = CGRect(x: 0 , y: 0, width: 100 , height: 30)
-        labelSwitch = LabelSwitchView(frame: frame, subViewHeight: 30)
+        labelSwitch = LabelSwitchView(frame: frame)
         labelSwitch.sizeToFit()
         self.addSubview(labelSwitch)
         
-        
+        // Adding Last Login Time Label
         lbl = UILabel()
         lbl.text = " Last login 11/12/2019 3:00"
         lbl.font = lbl.font?.withSize(16)
