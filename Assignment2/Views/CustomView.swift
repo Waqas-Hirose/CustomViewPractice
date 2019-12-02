@@ -36,7 +36,6 @@ class CustomView : UIView {
     
     func initCommon() {
         contentMode = .redraw
-        autoresizingMask = UIView.AutoresizingMask(rawValue: UIView.AutoresizingMask.flexibleWidth.rawValue | UIView.AutoresizingMask.flexibleHeight.rawValue)
     }
     
     
@@ -72,9 +71,6 @@ class CustomView : UIView {
     
     
     func addSubviews(viewHieght: CGFloat) {
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        
         // Adding Various Settings Button
         btnSettings = createButton(title: "Various Settings")
         self.addSubview(btnSettings)

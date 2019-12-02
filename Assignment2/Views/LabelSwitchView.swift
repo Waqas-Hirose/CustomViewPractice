@@ -36,8 +36,6 @@ class LabelSwitchView : UIView {
     
     func initCommon() {
         contentMode = .redraw
-        autoresizingMask = UIView.AutoresizingMask(rawValue: UIView.AutoresizingMask.flexibleWidth.rawValue | UIView.AutoresizingMask.flexibleHeight.rawValue)
-        
     }
     
     
@@ -65,15 +63,7 @@ class LabelSwitchView : UIView {
         
     }
     
-    
-    public func setFramRect(xPoint: CGFloat, yPoint: CGFloat, viewWidth: CGFloat, viewHeight: CGFloat) {
-        frame = CGRect(x: xPoint , y: yPoint, width: viewWidth, height: viewHeight)
-    }
-    
     func addSubviews(viewHieght: CGFloat) {
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        
         lbl = UILabel()
         lbl.text = "Auto Login"
         lbl.font = lbl.font?.withSize(16)
@@ -86,7 +76,5 @@ class LabelSwitchView : UIView {
         frame = switchView!.frame
         self.addSubview(switchView)
     }
-    
-    
 }
 
