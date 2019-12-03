@@ -9,14 +9,12 @@
 import Foundation
 import UIKit
 
-class LabelSwitchView : UIView {
-    
+class LabelSwitchView : UIView {    
     var switchView: UISwitch!
     var lbl: UILabel!
     
     override init (frame: CGRect) {
         super.init(frame: frame)
-        initCommon()
         addSubviews()
     }
     
@@ -24,14 +22,11 @@ class LabelSwitchView : UIView {
         super.init(coder: aDecoder)
     }
     
-    func initCommon() {
-        contentMode = .redraw
-    }
-    
-    
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        super.sizeThatFits(size)
-        let width = lbl.frame.width + switchView.frame.width + 5;
+        let labelSize = self.lbl.sizeThatFits(size)
+        let switchSize = self.switchView.sizeThatFits(size)
+        
+        let width = labelSize.width + switchSize.width + 5;
         let s = CGSize(width: width, height: size.height)
         
         return s;
