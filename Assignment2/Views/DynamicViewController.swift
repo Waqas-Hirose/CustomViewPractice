@@ -33,25 +33,17 @@ class DynamicViewController : UIViewController {
         
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        customView?.frame = CGRect(x: 0, y: 0, width: view.frame.width-(leftSafeArea +  rightSafeArea + 20), height: customViewHeight)
-        
-        // Setting CustonView in the Center of Parent View
-        customView?.center = self.view.center
-    }
-    
     private func setupViews()  {
         customView = CustomView(frame: .zero)
         if let customView = customView {
             self.view.addSubview(customView)
             
             // Applying Constraints on CustomeView
+            customView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint(item: customView, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0).isActive = true
             
-            customView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-            customView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10).isActive = true
+            customView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
+            customView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
             customView.addConstraint(NSLayoutConstraint(
                 item:customView, attribute:NSLayoutConstraint.Attribute.height,
                 relatedBy:NSLayoutConstraint.Relation.equal,
