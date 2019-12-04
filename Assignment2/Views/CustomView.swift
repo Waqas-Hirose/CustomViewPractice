@@ -43,16 +43,17 @@ class CustomView : UIView {
         self.btnLogin.frame = CGRect(x: btnSettings.frame.minX-10-btnLogintSize.width , y: subviewYPosition, width: btnLogintSize.width, height: btnLogintSize.height)
         
         let switchSize = labelSwitch.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        subviewYPosition = (self.frame.height - labelSwitch.frame.height)/2
+        subviewYPosition = (self.frame.height - switchSize.height)/2
         if(btnLogin.isHidden){
-            self.labelSwitch.frame = CGRect(x: btnLogout.frame.minX-10-switchSize.width , y: subviewYPosition, width: switchSize.width+5 , height: labelSwitch.frame.height)
+            self.labelSwitch.frame = CGRect(x: btnLogout.frame.minX-10-switchSize.width , y: subviewYPosition, width: switchSize.width+5 , height: switchSize.height)
         } else {
             
-            self.labelSwitch.frame = CGRect(x: btnLogin.frame.minX-10-switchSize.width , y: subviewYPosition, width: switchSize.width+5 , height: labelSwitch.frame.height)
+            self.labelSwitch.frame = CGRect(x: btnLogin.frame.minX-10-switchSize.width , y: subviewYPosition, width: switchSize.width+5 , height: switchSize.height)
         }
         
         subviewYPosition = (self.frame.height - lbl.frame.height)/2
-        self.lbl.frame = CGRect(x: 0 , y: subviewYPosition, width: labelSwitch.frame.minX-10 , height: lbl.frame.height)
+        let lblSize = lbl.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        self.lbl.frame = CGRect(x: 0 , y: subviewYPosition, width: labelSwitch.frame.minX-10 , height: lblSize.height)
         
     }
     

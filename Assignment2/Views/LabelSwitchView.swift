@@ -27,7 +27,7 @@ class LabelSwitchView : UIView {
         let switchSize = self.switchView.sizeThatFits(size)
         
         let width = labelSize.width + switchSize.width + 5;
-        let s = CGSize(width: width, height: size.height)
+        let s = CGSize(width: width, height: frame.height)
         
         return s;
     }
