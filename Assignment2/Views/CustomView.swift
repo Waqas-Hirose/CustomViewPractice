@@ -14,24 +14,17 @@ class CustomView : UIView {
     var btnLogin: UIButton!
     var btnLogout: UIButton!
     var btnSettings: UIButton!
-    var buttonHeight: CGFloat?
     var lbl: UILabel!
     var labelSwitch: LabelSwitchView!
     
     override init (frame: CGRect) {
         super.init(frame: frame)
-        initCommon()
         addSubviews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-    func initCommon() {
-        contentMode = .redraw
-    }
-    
     
     override func layoutSubviews() {
         super.layoutSubviews()
