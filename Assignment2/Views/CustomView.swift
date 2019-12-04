@@ -11,11 +11,11 @@ import UIKit
 
 class CustomView : UIView {
     
-    var btnLogin: UIButton!
-    var btnLogout: UIButton!
-    var btnSettings: UIButton!
-    var lbl: UILabel!
-    var labelSwitch: LabelSwitchView!
+    private var btnLogin: UIButton!
+    private var btnLogout: UIButton!
+    private var btnSettings: UIButton!
+    private var lbl: UILabel!
+    private var labelSwitch: LabelSwitchView!
     
     override init (frame: CGRect) {
         super.init(frame: frame)
@@ -57,7 +57,7 @@ class CustomView : UIView {
     }
     
     
-    func addSubviews() {
+    private func addSubviews() {
         // Adding Various Settings Button
         btnSettings = createButton(title: "Various Settings")
         self.addSubview(btnSettings)
@@ -97,7 +97,7 @@ class CustomView : UIView {
     /*
      This function retuns button with required properties
      */
-    func createButton(title: String) -> UIButton {
+    private func createButton(title: String) -> UIButton {
         let button = UIButton()
         button.setTitle(title, for: .normal)
         button.backgroundColor = .clear
@@ -116,7 +116,7 @@ class CustomView : UIView {
     /*
      This function will be called when Login Button will be tapped
      */
-    @objc func btnLoginTapped(sender: UIButton!) {
+    @objc private func btnLoginTapped(sender: UIButton!) {
         btnLogin.isHidden = true
         btnLogout.isHidden = false
         self.setNeedsLayout()
@@ -125,7 +125,7 @@ class CustomView : UIView {
     /*
      This function will be called when Logout Button will be tapped
      */
-    @objc func btnLogoutTapped(sender: UIButton!) {
+    @objc private func btnLogoutTapped(sender: UIButton!) {
         btnLogout.isHidden = true
         btnLogin.isHidden = false
         self.setNeedsLayout()

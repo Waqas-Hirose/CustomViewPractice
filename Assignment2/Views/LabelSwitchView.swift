@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class LabelSwitchView : UIView {    
-    var switchView: UISwitch!
-    var lbl: UILabel!
+    private var switchView: UISwitch!
+    private var lbl: UILabel!
     
     override init (frame: CGRect) {
         super.init(frame: frame)
@@ -44,7 +44,7 @@ class LabelSwitchView : UIView {
         
     }
     
-    func addSubviews() {
+    private func addSubviews() {
         // Adding Label
         lbl = UILabel()
         lbl.text = "Auto Login"

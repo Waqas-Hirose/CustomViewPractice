@@ -11,16 +11,16 @@ import UIKit
 
 class DynamicViewController : UIViewController {
     
-    var customView : CustomView?
-    let customViewHeight: CGFloat = 50
+    private var customView : CustomView?
+    private let customViewHeight: CGFloat = 50
     
-    var rightSafeArea: CGFloat {
+    private var rightSafeArea: CGFloat {
         if #available(iOS 11.0, *) {
             return view.safeAreaInsets.right
         }
         return 0
     }
-    var leftSafeArea: CGFloat {
+    private var leftSafeArea: CGFloat {
         if #available(iOS 11.0, *) {
             return view.safeAreaInsets.left
         }
@@ -42,7 +42,7 @@ class DynamicViewController : UIViewController {
         customView?.center = self.view.center
     }
     
-    func setupViews()  {
+    private func setupViews()  {
         customView = CustomView(frame: .zero)
         if let customView = customView {
             self.view.addSubview(customView)
