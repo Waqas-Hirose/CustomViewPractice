@@ -29,20 +29,20 @@ class CustomView : UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let btnSettingsSize = btnSettings.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        let btnSettingsSize = btnSettings.sizeThatFits(frame.size)
         let settingsYPosition = (self.frame.height - btnSettingsSize.height)/2
         self.btnSettings.frame = CGRect(x: self.bounds.width-10 - btnSettingsSize.width , y: settingsYPosition, width: btnSettingsSize.width, height: btnSettingsSize.height)
         
         
-        let btnLogoutSize = btnLogout.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        let btnLogoutSize = btnLogout.sizeThatFits(frame.size)
         let logoutYPosition = (self.frame.height - btnLogoutSize.height)/2
         self.btnLogout.frame = CGRect(x: btnSettings.frame.minX-10-btnLogoutSize.width , y: logoutYPosition, width: btnLogoutSize.width, height: btnLogoutSize.height)
         
-        let btnLogintSize = btnLogin.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        let btnLogintSize = btnLogin.sizeThatFits(frame.size)
         let loginYPosition = (self.frame.height - btnLogintSize.height)/2
         self.btnLogin.frame = CGRect(x: btnSettings.frame.minX-10-btnLogintSize.width , y: loginYPosition, width: btnLogintSize.width, height: btnLogintSize.height)
         
-        let switchSize = labelSwitch.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        let switchSize = labelSwitch.sizeThatFits(frame.size)
         let switchLabelYPosition = (self.frame.height - switchSize.height)/2
         if(btnLogin.isHidden){
             self.labelSwitch.frame = CGRect(x: btnLogout.frame.minX-10-switchSize.width , y: switchLabelYPosition, width: switchSize.width+5 , height: switchSize.height)
@@ -52,7 +52,7 @@ class CustomView : UIView {
         }
         
         let labelYPosition = (self.frame.height - lbl.frame.height)/2
-        let lblSize = lbl.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        let lblSize = lbl.sizeThatFits(frame.size)
         self.lbl.frame = CGRect(x: 0 , y: labelYPosition, width: labelSwitch.frame.minX-10 , height: lblSize.height)
         
     }

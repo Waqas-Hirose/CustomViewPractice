@@ -28,18 +28,18 @@ class LabelSwitchView : UIView {
         
         // Adding 5 pixel extra in width to give space between switch and label
         let width = labelSize.width + switchSize.width + CGFloat(5)
-        let s = CGSize(width: width, height: frame.height)
+        let s = CGSize(width: width, height: size.height)
         
         return s;
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        let lblNewSize = label.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        let lblNewSize = label.sizeThatFits(frame.size)
         let labelYPosition =   (self.frame.height - lblNewSize.height)/2
         self.label.frame = CGRect(x: 5 , y: labelYPosition, width: lblNewSize.width, height: lblNewSize.height)
         
         
-        let switchNewSize = switchView.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        let switchNewSize = switchView.sizeThatFits(frame.size)
         let switchYPosition =   (self.frame.height - switchNewSize.height)/2
         self.switchView.frame = CGRect(x: label.bounds.width + 5 , y: switchYPosition, width: switchNewSize.width, height: switchNewSize.height)
         
