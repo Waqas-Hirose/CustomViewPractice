@@ -15,7 +15,7 @@ class CustomView : UIView {
     private let btnLogout: UIButton = UIButton()
     private let btnSettings: UIButton = UIButton()
     private let lbl: UILabel = UILabel()
-    private let labelSwitch: LabelSwitchView = LabelSwitchView()
+    private let labelSwitch: LabelSwitchView = LabelSwitchView(frame: .zero)
     
     override init (frame: CGRect) {
         super.init(frame: frame)
@@ -71,7 +71,6 @@ class CustomView : UIView {
         
         // Adding Login Button
         setupButtonValues(button: btnLogin, title: "Log in")
-        frame = btnLogin.frame
         self.addSubview(btnLogin)
         
         //Applying Actions on Buttons
@@ -79,8 +78,6 @@ class CustomView : UIView {
         btnLogout.addTarget(self, action: #selector(btnLogoutTapped), for: .touchUpInside)
         
         // Adding LabelSwitch Custom View
-        let frame = CGRect(x: 0 , y: 0, width: 100 , height: 30)
-        labelSwitch.frame = frame
         self.addSubview(labelSwitch)
         
         // Adding Last Login Time Label

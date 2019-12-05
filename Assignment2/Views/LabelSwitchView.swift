@@ -26,7 +26,8 @@ class LabelSwitchView : UIView {
         let labelSize = self.label.sizeThatFits(size)
         let switchSize = self.switchView.sizeThatFits(size)
         
-        let width = labelSize.width + switchSize.width + 5;
+        // Adding 5 pixel extra in width to give space between switch and label
+        let width = labelSize.width + switchSize.width + CGFloat(5)
         let s = CGSize(width: width, height: frame.height)
         
         return s;
