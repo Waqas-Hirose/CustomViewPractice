@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class LabelSwitchView : UIView {    
-    private var switchView: UISwitch!
-    private var lbl: UILabel!
+    private let switchView: UISwitch = UISwitch()
+    private let label: UILabel = UILabel()
     
     override init (frame: CGRect) {
         super.init(frame: frame)
@@ -23,7 +23,7 @@ class LabelSwitchView : UIView {
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let labelSize = self.lbl.sizeThatFits(size)
+        let labelSize = self.label.sizeThatFits(size)
         let switchSize = self.switchView.sizeThatFits(size)
         
         let width = labelSize.width + switchSize.width + 5;
@@ -33,29 +33,25 @@ class LabelSwitchView : UIView {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        let lblNewSize = lbl.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        var subviewYPosition =   (self.frame.height - lblNewSize.height)/2
-        self.lbl.frame = CGRect(x: 5 , y: subviewYPosition, width: lblNewSize.width, height: lblNewSize.height)
+        let lblNewSize = label.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        let labelYPosition =   (self.frame.height - lblNewSize.height)/2
+        self.label.frame = CGRect(x: 5 , y: labelYPosition, width: lblNewSize.width, height: lblNewSize.height)
         
         
         let switchNewSize = switchView.sizeThatFits(CGSize(width: frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-        subviewYPosition =   (self.frame.height - switchNewSize.height)/2
-        self.switchView.frame = CGRect(x: lbl.bounds.width + 5 , y: subviewYPosition, width: switchNewSize.width, height: switchNewSize.height)
+        let switchYPosition =   (self.frame.height - switchNewSize.height)/2
+        self.switchView.frame = CGRect(x: label.bounds.width + 5 , y: switchYPosition, width: switchNewSize.width, height: switchNewSize.height)
         
     }
     
     private func addSubviews() {
         // Adding Label
-        lbl = UILabel()
-        lbl.text = "Auto Login"
-        lbl.font = lbl.font?.withSize(16)
-        lbl.textColor = .black
-        lbl.sizeToFit()
-        self.addSubview(lbl)
+        label.text = "Auto Login"
+        label.font = label.font?.withSize(16)
+        label.textColor = .black
+        self.addSubview(label)
         
         // Adding Switch
-        switchView = UISwitch()
-        frame = switchView!.frame
         self.addSubview(switchView)
     }
 }
