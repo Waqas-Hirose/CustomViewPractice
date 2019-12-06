@@ -23,13 +23,13 @@ class LabelSwitchView : UIView {
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let labelSize = self.label.sizeThatFits(size)
-        let switchSize = self.switchView.sizeThatFits(size)
+        let labelSize = self.label.sizeThatFits(self.frame.size)
+        let switchSize = self.switchView.sizeThatFits(self.frame.size)
         
         // Adding 5 pixel extra in width to give space between switch and label
         let width = labelSize.width + switchSize.width + CGFloat(5)
-        let s = CGSize(width: width, height: size.height)
-        
+        let h = max(labelSize.height, switchSize.height)
+        let s = CGSize(width: width, height: h)
         return s;
     }
     override func layoutSubviews() {
