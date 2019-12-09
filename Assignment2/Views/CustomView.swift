@@ -51,8 +51,8 @@ class CustomView : UIView {
             self.labelSwitch.frame = CGRect(x: btnLogin.frame.minX-10-switchSize.width , y: switchLabelYPosition, width: switchSize.width+5 , height: switchSize.height)
         }
         
-        let labelYPosition = (self.frame.height - lbl.frame.height)/2
         let lblSize = lbl.sizeThatFits(frame.size)
+        let labelYPosition = (self.frame.height - lblSize.height)/2
         self.lbl.frame = CGRect(x: 0 , y: labelYPosition, width: labelSwitch.frame.minX-10 , height: lblSize.height)
         
     }
